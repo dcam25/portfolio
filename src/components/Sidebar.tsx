@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { MessageSquare, User, Briefcase, Mail, Moon, Sun, Menu, X, Monitor } from "lucide-react";
+import { MessageSquare, User, Briefcase, Mail, Moon, Sun, Menu, X, Monitor, Github } from "lucide-react";
 import Link from "next/link";
 import { create } from "zustand";
 
@@ -105,6 +105,16 @@ export function Sidebar() {
               </div>
             )}
           </div>
+          
+          <a
+            href="https://github.com/dcam25"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 flex items-center justify-center gap-2 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
+          >
+            <Github className="w-4 h-4" />
+            GitHub
+          </a>
         </div>
       </div>
     </>

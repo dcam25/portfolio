@@ -2,7 +2,23 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+This project uses both a Next.js App Router frontend and a Python FastAPI backend. Both start concurrently using `npm run dev`.
+
+### 1. Setup the Python Backend (FastAPI + Pinecone)
+
+First, initialize your Python virtual environment and install the required AI dependencies:
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+pip install -r requirements.txt
+cd ..
+```
+
+### 2. Run the Development Server
+
+Start both the Next.js frontend and FastAPI backend concurrently:
 
 ```bash
 npm run dev
@@ -13,6 +29,16 @@ pnpm dev
 # or
 bun dev
 ```
+
+### 3. Alternative: Run with Docker Compose
+
+If you prefer out-of-the-box containerization, this project includes a complete Docker setup for both the Next.js static asset server and the Python FastAPI instance:
+
+```bash
+docker compose up --build
+```
+- Frontend will be served via Nginx at `http://localhost:3000`
+- Backend API will be available at `http://localhost:8000`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

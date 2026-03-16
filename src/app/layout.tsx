@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import { Sidebar } from "@/components/Sidebar";
 import { UniverseBackground } from "@/components/UniverseBackground";
+import { ChatbotFAB } from "@/components/ChatbotFAB";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          <ChatbotFAB />
           <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>

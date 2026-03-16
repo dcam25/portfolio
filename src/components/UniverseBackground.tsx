@@ -51,7 +51,14 @@ export function UniverseBackground() {
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+
+        // Check if dark mode is active to flip star colors
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+          ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        } else {
+          ctx.fillStyle = `rgba(0, 0, 0, ${star.alpha * 0.4})`;
+        }
         ctx.fill();
       });
 
@@ -78,7 +85,7 @@ export function UniverseBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] bg-black"
+      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] bg-white dark:bg-black transition-colors duration-300"
     />
   );
 }

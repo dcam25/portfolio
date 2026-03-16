@@ -1,23 +1,9 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { projectsData } from "@/lib/data";
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "PropEdge AI",
-      description: "Real estate AI solution focusing on modern UI and scalable backend. Provides predictive analytics and intelligent property matching.",
-      tags: ["Next.js", "Node.js", "AI SDK", "TailwindCSS"],
-      github: "https://github.com/dcam25/propedge-ai",
-      live: null
-    },
-    {
-      title: "Multi-Tenant Platform",
-      description: "A comprehensive SaaS infrastructure built with robustness and security in mind. Features role-based access control and tenant isolation.",
-      tags: ["React", "Express UI", "PostgreSQL", "Docker"],
-      github: "https://github.com/dcam25/multi-tenant",
-      live: null
-    }
-  ];
+  const projects = projectsData;
 
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-8 pt-12 pb-24">
@@ -31,19 +17,26 @@ export default function Projects() {
           <div key={idx} className="flex flex-col p-6 rounded-3xl border border-border/50 glass-panel transition-all hover:-translate-y-1 hover:shadow-lg">
             <h3 className="text-xl font-bold mb-3">{project.title}</h3>
             <p className="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
-              {project.description}
+              {project.shortDescription}
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.map(tag => (
+              {project.technologies.map(tag => (
                 <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium border border-border/40">
                   {tag}
                 </span>
               ))}
             </div>
             <div className="flex items-center gap-4 mt-auto">
-              {project.github && (
+              <Link 
+                href={`/projects/${project.slug}`} 
+                className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors bg-blue-500/10 text-blue-600 dark:text-blue-400 px-3 py-1.5 rounded-lg"
+              >
+                View Details
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              {project.githubUrl && (
                 <Link 
-                  href={project.github} 
+                  href={project.githubUrl} 
                   target="_blank" 
                   className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors"
                 >
@@ -51,9 +44,9 @@ export default function Projects() {
                   Code
                 </Link>
               )}
-              {project.live && (
+              {project.liveUrl && (
                 <Link 
-                  href={project.live} 
+                  href={project.liveUrl} 
                   target="_blank" 
                   className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors"
                 >

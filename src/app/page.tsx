@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: process.env.NEXT_PUBLIC_SUPABASE_AI_FUNCTION_URL || "/api/chat", // Fallback for local dev if not defined
+    api: process.env.NEXT_PUBLIC_SUPABASE_AI_FUNCTION_URL || "http://127.0.0.1:8000/api/chat", // Fallback for local FastAPI dev
     onError: (error) => {
       toast.error("Failed to fetch response: " + error.message);
     }

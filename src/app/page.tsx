@@ -33,10 +33,10 @@ export default function Home() {
           <Bot className="w-12 h-12 text-blue-500" />
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-foreground/90">
-          Hi, I'm the AI Assistant for this Portfolio.
+          Hi, I&apos;m the AI Assistant for this Portfolio.
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl text-foreground/60">
-          I'm a Next.js & Node.js Developer specializing in E-commerce & CMS Solutions.
+          I&apos;m a Next.js & Node.js Developer specializing in E-commerce & CMS Solutions.
           Ask me about my experience, skills, or specific projects!
         </p>
       </motion.div>

@@ -21,9 +21,9 @@ export function Sidebar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
   return (
     <>
@@ -39,9 +39,8 @@ export function Sidebar() {
 
       {/* Sidebar Container */}
       <div
-        className={`${
-          isOpen ? "translate-x-0 w-64" : "-translate-x-full w-0"
-        } transition-all duration-300 ease-in-out fixed md:relative z-40 h-full bg-[#f9f9f9] dark:bg-[#202123] flex flex-col border-r border-border shrink-0`}
+        className={`${isOpen ? "translate-x-0 w-64" : "-translate-x-full w-0"
+          } transition-all duration-300 ease-in-out fixed md:relative z-40 h-full bg-[#f9f9f9] dark:bg-[#202123] flex flex-col border-r border-border shrink-0`}
       >
         <div className="p-4 flex items-center justify-between">
           <Link href="/" className="font-semibold text-lg flex items-center gap-2">
@@ -105,7 +104,7 @@ export function Sidebar() {
               </div>
             )}
           </div>
-          
+
           <a
             href="https://github.com/dcam25"
             target="_blank"

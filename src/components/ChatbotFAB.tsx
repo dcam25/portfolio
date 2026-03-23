@@ -62,7 +62,7 @@ export function ChatbotFAB() {
               {messages.length === 0 && (
                 <div className="text-center text-muted-foreground mt-10 space-y-2">
                   <Bot className="w-8 h-8 mx-auto opacity-50" />
-                  <p className="text-sm">Hi! I'm an AI assistant trained on Dane's portfolio and resume. How can I help you today?</p>
+                  <p className="text-sm">Hi! I&apos;m an AI assistant trained on Dane&apos;s portfolio and resume. How can I help you today?</p>
                 </div>
               )}
               {messages.map((m) => (
@@ -72,8 +72,8 @@ export function ChatbotFAB() {
                   </div>
                   <div
                     className={`px-4 py-3 rounded-2xl max-w-[80%] ${m.role === 'user'
-                        ? 'bg-primary text-primary-foreground rounded-tr-sm'
-                        : 'bg-black/5 dark:bg-white/5 rounded-tl-sm text-foreground/80'
+                      ? 'bg-primary text-primary-foreground rounded-tr-sm'
+                      : 'bg-black/5 dark:bg-white/5 rounded-tl-sm text-foreground/80'
                       }`}
                   >
                     <div className="prose prose-sm dark:prose-invert break-words text-sm">

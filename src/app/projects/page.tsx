@@ -9,9 +9,9 @@ export default function Projects() {
     <div className="max-w-4xl mx-auto p-4 sm:p-8 pt-12 pb-24">
       <h1 className="text-4xl font-bold mb-4">Projects</h1>
       <p className="text-muted-foreground text-lg mb-12">
-        A selection of products and tools I've built.
+        A selection of products and tools I&apos;ve built.
       </p>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, idx) => (
           <div key={idx} className="flex flex-col p-6 rounded-3xl border border-border/50 glass-panel transition-all hover:-translate-y-1 hover:shadow-lg">
@@ -27,17 +27,17 @@ export default function Projects() {
               ))}
             </div>
             <div className="flex items-center gap-4 mt-auto">
-              <Link 
-                href={`/projects/${project.slug}`} 
+              <Link
+                href={`/projects/${project.slug}`}
                 className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors bg-blue-500/10 text-blue-600 dark:text-blue-400 px-3 py-1.5 rounded-lg"
               >
                 View Details
                 <ArrowRight className="w-4 h-4" />
               </Link>
               {project.githubUrl && (
-                <Link 
-                  href={project.githubUrl} 
-                  target="_blank" 
+                <Link
+                  href={project.githubUrl}
+                  target="_blank"
                   className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors"
                 >
                   <Github className="w-4 h-4" />
@@ -45,9 +45,9 @@ export default function Projects() {
                 </Link>
               )}
               {project.liveUrl && (
-                <Link 
-                  href={project.liveUrl} 
-                  target="_blank" 
+                <Link
+                  href={project.liveUrl}
+                  target="_blank"
                   className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />

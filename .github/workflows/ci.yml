@@ -1,0 +1,68 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Cancel in-progress runs on PRs to save resources
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend (Next.js)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Using LTS
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Test Build
+        # Builds exactly how Vercel will build it
+        run: npm run build
+
+  backend:
+    name: Backend (Python/uv)
+    runs-on: ubuntu-latest
+    # Run these steps in the backend folder
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "./backend/.python-version"
+
+      - name: Install dependencies
+        # Syncs an exact environment from uv.lock
+        run: uv sync
+
+      # If you add sorting/linting to your python project (e.g., ruff), uncomment below:
+      # - name: Lint with Ruff
+      #   run: uv run ruff check .
+      
+      # If you add tests to your python project (e.g., pytest), uncomment below:
+      # - name: Run tests
+      #   run: uv run pytest
+

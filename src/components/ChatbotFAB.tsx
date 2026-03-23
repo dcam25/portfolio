@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
+import ReactMarkdown from "react-markdown";
 
 export function ChatbotFAB() {
   const pathname = usePathname();
@@ -69,15 +70,14 @@ export function ChatbotFAB() {
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${m.role === 'user' ? 'bg-primary/10 text-primary' : 'bg-blue-600/10 text-blue-600'}`}>
                     {m.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                   </div>
-                  <div 
-                    className={`px-4 py-3 rounded-2xl max-w-[80%] ${
-                      m.role === 'user' 
-                        ? 'bg-primary text-primary-foreground rounded-tr-sm' 
+                  <div
+                    className={`px-4 py-3 rounded-2xl max-w-[80%] ${m.role === 'user'
+                        ? 'bg-primary text-primary-foreground rounded-tr-sm'
                         : 'bg-black/5 dark:bg-white/5 rounded-tl-sm text-foreground/80'
-                    }`}
+                      }`}
                   >
                     <div className="prose prose-sm dark:prose-invert break-words text-sm">
-                      {m.content}
+                      <ReactMarkdown>{m.content}</ReactMarkdown>
                     </div>
                   </div>
                 </div>

@@ -6,6 +6,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { motion } from "motion/react";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
@@ -23,7 +24,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-full max-w-4xl mx-auto p-4 sm:p-8">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex-1 flex flex-col justify-center items-center text-center mt-12 mb-16"
@@ -49,15 +50,14 @@ export default function Home() {
                   <Bot className="w-5 h-5" />
                 </div>
               )}
-              <div 
-                className={`px-4 py-3 rounded-2xl max-w-[85%] sm:max-w-[75%] ${
-                  m.role === 'user' 
-                    ? 'bg-primary text-primary-foreground rounded-tr-sm' 
-                    : 'bg-background border border-border/50 shadow-sm rounded-tl-sm glass-panel text-foreground/80'
-                }`}
+              <div
+                className={`px-4 py-3 rounded-2xl max-w-[85%] sm:max-w-[75%] ${m.role === 'user'
+                  ? 'bg-primary text-primary-foreground rounded-tr-sm'
+                  : 'bg-background border border-border/50 shadow-sm rounded-tl-sm glass-panel text-foreground/80'
+                  }`}
               >
                 <div className="prose prose-sm dark:prose-invert break-words">
-                  {m.content}
+                  <ReactMarkdown>{m.content}</ReactMarkdown>
                 </div>
               </div>
               {m.role === 'user' && (

@@ -14,7 +14,7 @@ export function ChatbotFAB() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: process.env.NEXT_PUBLIC_SUPABASE_AI_FUNCTION_URL || "http://127.0.0.1:8000/api/chat", // Fallback for local FastAPI dev if not defined
+    api: (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000") + "/api/chat", // Corrected fallback logic
     onError: (error) => {
       toast.error("Failed to fetch response: " + error.message);
     }

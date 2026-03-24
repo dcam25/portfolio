@@ -15,7 +15,7 @@ app = FastAPI(title="Portfolio RAG AI Backend")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://dcam25.github.io"],
+    allow_origins=["http://localhost:3000", "https://dcam25.github.io", os.getenv("FRONT_END_URL")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,0 +1,48 @@
+name: CD - Deploy to Lambda
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "./backend/.python-version"
+
+      - name: Package Dependencies and Code
+        run: |
+          # 1. Install dependencies into a temporary folder using uv
+          uv pip install -r pyproject.toml --target ./package
+          
+          # 2. Zip dependencies
+          cd package
+          zip -r ../../deployment_package.zip .
+          cd ..
+          
+          # 3. Add your python code to the root of the zip
+          zip -g ../deployment_package.zip *.py
+
+      - name: Deploy to AWS Lambda
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: us-east-2
+          function_name: dane_cameron_portfolio_chat_bot_backend
+          zip_file: deployment_package.zip

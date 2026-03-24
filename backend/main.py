@@ -9,6 +9,8 @@ import asyncio
 
 from rag import ask_stream
 
+from mangum import Mangum
+
 app = FastAPI(title="Portfolio RAG AI Backend")
 
 app.add_middleware(
@@ -48,3 +50,5 @@ async def chat_endpoint(request: ChatRequest):
 @app.get("/api/health")
 async def health_check():
     return {"status": "ok"}
+
+handler = Mangum(app)

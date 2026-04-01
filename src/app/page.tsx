@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000") + "/api/chat", // Corrected fallback logic
+    api: (process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://127.0.0.1:8000") + "/api/chat", // Corrected fallback logic
     onError: (error) => {
       toast.error("Failed to fetch response: " + error.message);
     }

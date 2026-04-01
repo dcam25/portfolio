@@ -59,6 +59,13 @@ resource "aws_lambda_function" "backend" {
 resource "aws_apigatewayv2_api" "backend_api" {
   name          = "${var.project_name}-api"
   protocol_type = "HTTP"
+
+  cors_configuration {
+    allow_origins = ["https://main.d3n109hzs610qq.amplifyapp.com", "http://localhost:3000"]
+    allow_methods = ["POST", "OPTIONS"]
+    allow_headers = ["Content-Type", "Authorization"]
+    max_age       = 300
+  }
 }
 
 resource "aws_apigatewayv2_stage" "default" {

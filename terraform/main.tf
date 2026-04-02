@@ -10,7 +10,7 @@ terraform {
     }
   }
   cloud {
-    organization = "portfolio-deploy"
+    organization = "dane-org"
 
     workspaces {
       name = "portfolio"

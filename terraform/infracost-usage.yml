@@ -1,0 +1,8 @@
+version: 0.1
+resource_usage:
+  aws_apigatewayv2_api.backend_api:
+    monthly_requests: 10000 # Estimate 10k requests/month
+
+  aws_lambda_function.backend:
+    monthly_requests: 10000
+    request_duration_ms: 200 # Average 200ms per execution

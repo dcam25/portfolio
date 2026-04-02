@@ -15,7 +15,8 @@ resource "aws_iam_role" "lambda_exec" {
   })
 
   tags = {
-    Service = var.project_name
+    Service     = var.project_name
+    Environment = var.environment
   }
 }
 
@@ -43,16 +44,23 @@ resource "aws_lambda_function" "backend" {
 
   environment {
     variables = {
-      OPENAI_API_KEY      = var.openai_api_key
-      PINECONE_API_KEY    = var.pinecone_api_key
+      OPENAI_API_KEY       = var.openai_api_key
+      PINECONE_API_KEY     = var.pinecone_api_key
       PINECONE_ENVIRONMENT = var.pinecone_environment
       PINECONE_INDEX_NAME  = var.pinecone_index_name
-      FRONT_END_URL       = "*" # Can be restricted later
+      FRONT_END_URL        = "*" # Can be restricted later
     }
   }
 
   timeout     = 30
   memory_size = 512
+
+  tags = {
+    Service     = var.project_name
+    Environment = var.environment
+  }
+
+  architectures = ["arm64"]
 }
 
 # API Gateway (HTTP API)
@@ -78,8 +86,8 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
   api_id           = aws_apigatewayv2_api.backend_api.id
   integration_type = "AWS_PROXY"
 
-  integration_uri    = aws_lambda_function.backend.invoke_arn
-  integration_method = "POST"
+  integration_uri        = aws_lambda_function.backend.invoke_arn
+  integration_method     = "POST"
   payload_format_version = "2.0"
 }
 

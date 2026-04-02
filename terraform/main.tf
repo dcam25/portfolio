@@ -23,7 +23,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Service = var.project_name
+      Service     = var.project_name
+      Environment = var.environment
     }
   }
 }

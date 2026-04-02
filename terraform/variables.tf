@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region for deployment"
   type        = string
-  default     = "us-east-2"
+  default     = "us-east-1"
 }
 
 variable "project_name" {
@@ -52,4 +52,15 @@ variable "github_token" {
   description = "GitHub Personal Access Token with repo scope"
   type        = string
   sensitive   = true
+}
+
+variable "environment" {
+  description = "Environment for deployment (Dev, Stage, Prod)"
+  type        = string
+  default     = "Dev"
+
+  validation {
+    condition     = contains(["Dev", "Stage", "Prod"], var.environment)
+    error_message = "The environment variable must be one of: Dev, Stage, Prod."
+  }
 }

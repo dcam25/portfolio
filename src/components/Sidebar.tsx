@@ -105,7 +105,7 @@ export function Sidebar() {
             )}
           </div>
 
-          <a
+          {/* <a
             href="https://github.com/dcam25"
             target="_blank"
             rel="noopener noreferrer"
@@ -113,7 +113,7 @@ export function Sidebar() {
           >
             <Github className="w-4 h-4" />
             GitHub
-          </a>
+          </a> */}
         </div>
       </div>
     </>
